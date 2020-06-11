@@ -13,7 +13,7 @@ const User = require('./models/user');
 
 const MONGODB_URI =
   'mongodb+srv://<username<:<password>@cluster0.n1dim.mongodb.net/chat';
-
+   // <username<:<password>
 const app = express();
 
 const store = new MongoDBStore({
@@ -27,6 +27,7 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 const authRoutes = require('./routes/auth');
+const chatRoutes = require('./routes/chat');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -61,6 +62,7 @@ app.use((req, res, next) => {
 });
 
 app.use(authRoutes);
+app.use(chatRoutes);
 
 app.get('/500', errorController.get500);
 
@@ -77,7 +79,7 @@ app.use((req, res, next) => {
 mongoose
   .connect(MONGODB_URI)
   .then(result => {
-    app.listen(4000);
+    app.listen(3000);
     console.log('Connected!');
   })
   .catch(err => {

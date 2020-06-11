@@ -5,30 +5,34 @@
 				<h1><i class="fas fa-comments"></i> Chat Room </h1>
 			</header>
 			<main class="join-main">
-				<form action="chat.html">
+				<form action="/create" method="POST">
 					<div class="form-control">
 						<input
 							type="text"
-							name="room"
-							id="room"
+							name="title"
+							id="title"
 							placeholder="Enter Room Name .."
 							required
 						/>
 						<button type="submit" class="btn">Submit</button>
 					</div>
-					
-					<div>
-					    <h3>Join Available Rooms</h3>
-	                    <ul>
-							<li> 
-		                      <button type="submit" class="btn">JavaScript</button>
-							</li>
-							<li> 
-		                      <button type="submit" class="btn">PHP</button>
-							</li>
+				</form>	
+				<div>
+					<h3>Join Available Rooms</h3>
+					<% if (rooms.length <= 0) { %>
+						<div style="color: rgb(100, 74, 18); text-align: center; padding: 5px; margin: 20px 10px; font-weight: bold;">
+							No Rooms are Available!
+						</div>
+					<% } else { %>
+						<ul>
+							<% rooms.forEach(room => { %>
+								<li> 
+									<button type="submit" class="btn"><%= room.title %></button>
+								</li>
+							<% }); %>
 						</ul>
-					</div>
-				</form>
+					<% } %>
+				</div>
 			</main>
 		</div>
 <%- include('../includes/end.ejs') %>

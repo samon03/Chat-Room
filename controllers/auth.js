@@ -5,6 +5,8 @@ const { check, validationResult } = require('express-validator');
 
 const User = require('../models/user');
 
+const Chat = require('../models/chat');
+
 exports.getLogin = (req, res, next) => {
   let message = req.flash('error');
   if (message.length > 0) {
@@ -84,14 +86,9 @@ exports.postLogin = (req, res, next) => {
             req.session.isLoggedIn = true;
             req.session.user = user;
             return req.session.save(err => {
-              console.log(err);
-                res.render('chat/create', {
-                  path: '/create',
-                  pageTitle: 'Join Room',
-                  errorMessage: 'Invalid.'
+                res.redirect('/create');
               });
-            });
-          }
+          };
           return res.status(422).render('auth/login', {
             path: '/login',
             pageTitle: 'Login',
@@ -160,7 +157,7 @@ exports.postSignup = (req, res, next) => {
 
 exports.postLogout = (req, res, next) => {
   req.session.destroy(err => {
-    console.log(err);
+    console.log('Successfully Loggedout!');
     res.redirect('/login');
   });
   
