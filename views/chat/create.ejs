@@ -1,0 +1,34 @@
+<%- include('../includes/head.ejs') %>
+	<%- include('../includes/navigation.ejs') %>
+		<div class="join-container">
+			<header class="join-header">
+				<h1><i class="fas fa-comments"></i> Chat Room </h1>
+			</header>
+			<main class="join-main">
+				<form action="chat.html">
+					<div class="form-control">
+						<input
+							type="text"
+							name="room"
+							id="room"
+							placeholder="Enter Room Name .."
+							required
+						/>
+						<button type="submit" class="btn">Submit</button>
+					</div>
+					
+					<div>
+					    <h3>Join Available Rooms</h3>
+	                    <ul>
+							<li> 
+		                      <button type="submit" class="btn">JavaScript</button>
+							</li>
+							<li> 
+		                      <button type="submit" class="btn">PHP</button>
+							</li>
+						</ul>
+					</div>
+				</form>
+			</main>
+		</div>
+<%- include('../includes/end.ejs') %>
