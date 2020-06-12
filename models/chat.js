@@ -7,18 +7,26 @@ const roomSchema = new Schema({
     type: String,
     required: true
   },
-  author: {
+  authorId: {
     type: Schema.Types.ObjectId,
     required: true,
     ref: 'User'
   },
+  author: {
+    type: String,
+    required: true
+  },
   chat: {
     items: [
       {
-        sender: {
+        senderId: {
           type: Schema.Types.ObjectId,
           required: true,
           ref: 'User'
+        },
+        sender: {
+          type: String,
+          required: true
         },
         messages: {
           type: String,

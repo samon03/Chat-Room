@@ -12,18 +12,28 @@
         <h2 id="room-name"><%= room.title %></h2>
         <h3><i class="fas fa-users"></i> Users</h3>
         <ul id="users">
-          <li>Brad</li>
-          <li>John</li>
-          <li>Mary</li>
+          <li><%= room.author %></li>
+          <% if (convo.length > 0) { %>
+            <% convo.forEach(msg => { %> 
+              <li><%= msg.sender %></li>
+            <% }) %>
+          <% } %>
         </ul>
       </div>
       <div class="chat-messages">
 					<div class="message">
-						<p class="meta">Brad <span>9:12pm</span></p>
-						<p class="text">
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi,
-							repudiandae.
-						</p>
+            <% if (convo.length > 0) { %>
+              <% convo.forEach(msg => { %> 
+                <p class="meta"><% msg.sender %><span>9:12pm</span></p>
+                <p class="text">
+                  <% msg.messages %>
+                </p>
+              <% }) %>
+            <% } else { %>
+              <p class="text" style="text-align: center; color: rgb(45, 168, 14);">
+                 Let's Start Coversation
+              </p>
+            <% } %>
 					</div>
 					<div class="message">
 						<p class="meta">Mary <span>9:15pm</span></p>

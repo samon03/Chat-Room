@@ -9,10 +9,10 @@ const router = express.Router();
 
 router.get('/create', isAuth, chatController.getRooms);
 
-router.get('/room/:roomId', chatController.getRoom);
+router.get('/room/:roomId', isAuth, chatController.getRoom);
 
 router.post('/create', isAuth, chatController.postRooms);
 
-// router.post('/chat', isAuth, chatController.postCartDeleteProduct);
+// router.post(c'/room/:roomId', isAuth, chatController.getRoom);
 
 module.exports = router;

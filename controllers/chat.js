@@ -21,8 +21,10 @@ exports.getRoom = (req, res, next) => {
   const roomId = req.params.roomId;
   Chat.findById(roomId)
     .then(room => {
+      const convo = room.chat.items;
       res.render('chat/room', {
         room: room,
+        convo: convo,
         pageTitle: room.title,
         path: '/room'
       });
@@ -37,13 +39,15 @@ exports.getRoom = (req, res, next) => {
 
 exports.postRooms = (req, res, next) => {
     const title = req.body.title;
-    const author = req.user;
+    const authorId = req.user;
+    const author = req.user.name;
     // const roomId  = req.params.roomId;
 
     console.log({author , title});
   
     const chat = new Chat({
       title: title,
+      authorId: authorId,
       author: author,
       chat: {}
     });
