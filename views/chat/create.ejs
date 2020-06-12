@@ -14,7 +14,9 @@
 							placeholder="Enter Room Name .."
 							required
 						/>
-						<button type="submit" class="btn">Submit</button>
+						<button type="submit" class="btn">
+							Submit
+						</button>
 					</div>
 				</form>	
 				<div>
@@ -27,7 +29,9 @@
 						<ul>
 							<% rooms.forEach(room => { %>
 								<li> 
-									<button type="submit" class="btn"><%= room.title %></button>
+                                    <button type="submit" class="btn">
+										<a href="/room/<%= room._id %>" class="btn"><%= room.title %></a>
+									</button>
 								</li>
 							<% }); %>
 						</ul>

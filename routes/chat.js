@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.get('/create', isAuth, chatController.getRooms);
 
-// router.get('/chat', chatController.getProducts);
+router.get('/room/:roomId', chatController.getRoom);
 
 router.post('/create', isAuth, chatController.postRooms);
 

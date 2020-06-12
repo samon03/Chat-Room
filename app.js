@@ -12,8 +12,8 @@ const errorController = require('./controllers/error');
 const User = require('./models/user');
 
 const MONGODB_URI =
-  'mongodb+srv://<username<:<password>@cluster0.n1dim.mongodb.net/chat';
-   // <username<:<password>
+  'mongodb+srv://<username>:<password>@cluster0.n1dim.mongodb.net/chat';
+   // <username>:<password>
 const app = express();
 
 const store = new MongoDBStore({
@@ -44,7 +44,6 @@ app.use(
 app.use(flash());
 
 app.use((req, res, next) => {
-  // throw new Error('Sync Dummy');
   if (!req.session.user) {
     return next();
   }

@@ -17,9 +17,28 @@ exports.getRooms = (req, res, next) => {
     });
 };
 
+exports.getRoom = (req, res, next) => {
+  const roomId = req.params.roomId;
+  Chat.findById(roomId)
+    .then(room => {
+      res.render('chat/room', {
+        room: room,
+        pageTitle: room.title,
+        path: '/room'
+      });
+    })
+    .catch(err => {
+      const error = new Error(err);
+      error.httpStatusCode = 500;
+      return next(error);
+    });
+};
+
+
 exports.postRooms = (req, res, next) => {
     const title = req.body.title;
     const author = req.user;
+    // const roomId  = req.params.roomId;
 
     console.log({author , title});
   
@@ -30,10 +49,11 @@ exports.postRooms = (req, res, next) => {
     });
     chat
       .save()
-      .then(result => {
+      .then(room => {
         // console.log(result);
         console.log('Room Created');
-        res.redirect('/chat');
+        const roomId = room._id;
+        res.redirect('/room/' + roomId);
       })
       .catch(err => {
         const error = new Error(err);
