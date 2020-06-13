@@ -13,6 +13,6 @@ router.get('/room/:roomId', isAuth, chatController.getRoom);
 
 router.post('/create', isAuth, chatController.postRooms);
 
-// router.post(c'/room/:roomId', isAuth, chatController.getRoom);
+router.post('/room/:roomId', isAuth, chatController.postRoom);
 
 module.exports = router;
