@@ -38,25 +38,23 @@ exports.getRoom = (req, res, next) => {
 
 exports.postRooms = (req, res, next) => {
     const title = req.body.title;
-    const authorId = req.user;
-    const author = req.user.name;
+    const user = req.user;
 
-    console.log({author , title});
+    console.log({user , title});
   
     const chat = new Chat({
       title: title,
-      authorId: authorId,
-      author: author,
+      users: [
+        { user: user }
+      ],
       chat: {}
     });
     chat
       .save()
       .then(room => {
-        // console.log(result);
         console.log('Room Created');
         const roomId = room._id;
-        // res.redirect('/room/' + roomId);
-        res.redirect('/create');
+        res.redirect('/room/' + roomId);
       })
       .catch(err => {
         const error = new Error(err);
@@ -76,14 +74,13 @@ exports.postRooms = (req, res, next) => {
     Chat.findById(roomId)
       .then(room => {
         room.chat.items.push({
-          senderId: senderId,
+          _id: senderId,
           sender: sender,
           messages: messages
         });
         room.save();
       })
       .then(result => {
-        // console.log(result);
         res.redirect('/room/' + roomId);
       })
       .catch(err => {

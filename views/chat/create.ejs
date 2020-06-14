@@ -28,16 +28,11 @@
 					<% } else { %>
 						<ul>
 							<% rooms.forEach(room => { %>
-                                <!-- <form action="/room/<%= room._id %>" method="POST"> -->
-									<li> 
-										<button type="submit" class="btn">
-											<a href="/room/<%= room._id %>" class="btn"><%= room.title %></a>
-										</button>
-										<!-- <button type="submit" class="btn">
-											<%= room.title %>
-										</button> -->
-									</li>
-							    <!-- </form> -->
+								<li> 
+									<button type="submit" class="btn">
+										<a href="/room/<%= room._id %>" class="btn"><%= room.title %></a>
+									</button>
+								</li>   
 							<% }); %>
 						</ul>
 					<% } %>

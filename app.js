@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
-const csrf = require('csurf');
+
 const flash = require('connect-flash');
 
 const errorController = require('./controllers/error');
@@ -13,15 +13,13 @@ const User = require('./models/user');
 
 const MONGODB_URI =
   'mongodb+srv://<username>:<password>@cluster0.n1dim.mongodb.net/chat';
-   // <username>:<password>
+  
 const app = express();
 
 const store = new MongoDBStore({
   uri: MONGODB_URI,
   collection: 'sessions'
 });
-
-// const csrfProtection = csrf();
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -40,7 +38,7 @@ app.use(
     store: store
   })
 );
-// app.use(csrfProtection);
+
 app.use(flash());
 
 app.use((req, res, next) => {
