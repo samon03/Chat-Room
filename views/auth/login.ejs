@@ -8,7 +8,7 @@
 				<% if (errorMessage) { %>
 					<div class="user-message user-message--error"><%= errorMessage %></div>
 				<% } %>
-				<form action="/login" method="POST">
+				<form action="/" method="POST">
 					<div class="form-control">
 						<label for="email">Email</label>
 						<input
@@ -30,6 +30,11 @@
 						value="<%= oldInput.password %>">
 					</div>
 					<button type="submit" class="btn">LogIn</button>
+					<div style="margin: 5% 0; text-align: center;">
+						<i class="fas fa-star"></i>
+						<a href="/signup" style="color: whitesmoke;">Not yet registered?</a>
+						<i class="fas fa-star"></i>
+					</div>
 				</form>
 			</main>
 		</div>

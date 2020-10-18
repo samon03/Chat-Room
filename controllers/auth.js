@@ -102,7 +102,7 @@ exports.postLogin = (req, res, next) => {
         })
         .catch(err => {
           console.log(err);
-          res.redirect('/login');
+          res.redirect('/');
         });
     })
     .catch(err => {
@@ -146,7 +146,7 @@ exports.postSignup = (req, res, next) => {
       return user.save();
     })
     .then(result => {
-      res.redirect('/login');
+      res.redirect('/');
     })
     .catch(err => {
       const error = new Error(err);
@@ -158,7 +158,7 @@ exports.postSignup = (req, res, next) => {
 exports.postLogout = (req, res, next) => {
   req.session.destroy(err => {
     console.log('Successfully Loggedout!');
-    res.redirect('/login');
+    res.redirect('/');
   });
   
 };
