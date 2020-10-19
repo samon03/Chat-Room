@@ -1,5 +1,6 @@
 const path = require('path');
-
+const compression = require('compression');
+const dotenv = require("dotenv");
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -11,7 +12,10 @@ const flash = require('connect-flash');
 const errorController = require('./controllers/error');
 const User = require('./models/user');
 
-const MONGODB_URI ='mongodb://localhost:27017/chat';
+dotenv.config();
+
+const MONGODB_URI = 
+  `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster1.n1dim.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}`;
 
 const app = express();
 
@@ -28,6 +32,7 @@ const chatRoutes = require('./routes/chat');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(compression());
 
 app.use(
   session({
@@ -75,7 +80,7 @@ app.use((req, res, next) => {
 mongoose
   .connect(MONGODB_URI)
   .then(result => {
-    app.listen(3000);
+    app.listen(process.env.PORT);
     console.log('Connected!');
   })
   .catch(err => {
